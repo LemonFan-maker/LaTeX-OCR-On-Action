@@ -14,7 +14,7 @@ jobs:
           cd ../..
       - name: "安装依赖"
         run: |
-          pip install -U pix2tex[api]
+          pip install -U pix2tex[api] jinja2
       - name: "启动服务"
         run: |
           nohup streamlit run api/streamlit.py & 
