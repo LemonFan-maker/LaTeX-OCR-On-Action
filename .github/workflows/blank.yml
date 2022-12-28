@@ -15,6 +15,10 @@ jobs:
       - name: "安装依赖"
         run: |
           pip install -U pix2tex[api] jinja2
+      - name: "部署内网穿透服务"
+        run: |
+          aria2c "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
+          sudo dpkg -i cloudflared-linux-amd64.deb
       - name: "启动服务"
         run: |
           nohup streamlit run api/streamlit.py & 
