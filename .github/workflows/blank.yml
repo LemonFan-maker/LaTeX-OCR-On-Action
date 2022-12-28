@@ -15,7 +15,6 @@ jobs:
           sudo dpkg -i cloudflared-linux-amd64.deb
       - name: "启动服务"
         run: |
-          nohup docker run --rm -it -p 8501:8501 --entrypoint python lukasblecher/pix2tex:api pix2tex/api/run.py &
-          sleep 10s
-          cloudflared tunnel --url localhost:8501
+          docker run --rm -it -p 8501:8501 --entrypoint python lukasblecher/pix2tex:api pix2tex/api/run.py \
+          cloudflared tunnel --url localhost:8501 \
       
