@@ -1,19 +1,22 @@
-name: CI
+name: LaTeX-OCR-On-Action
 on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: "拉取docker镜像"
+      - name: "准备模型文件"
         run: |
-          docker pull lukasblecher/pix2tex:api
-      - name: "部署内网穿透服务"
+          cd model/heckpoints
+          aria2c "https://github.com/lukas-blecher/LaTeX-OCR/releases/download/v0.0.1/image_resizer.pth"
+          aria2c "https://github.com/lukas-blecher/LaTeX-OCR/releases/download/v0.0.1/weights.pth"
+          cd ../..
+      - name: "安装依赖"
         run: |
-          aria2c "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
-          sudo dpkg -i cloudflared-linux-amd64.deb
+          pip install -U pix2tex[api]
       - name: "启动服务"
         run: |
-          docker run --rm -it -p 8501:8501 --entrypoint python lukasblecher/pix2tex:api pix2tex/api/run.py & cloudflared tunnel --url localhost:8501
+          nohup streamlit run api/streamlit.py & 
+          cloudflared tunnel --url localhost:8501
       
