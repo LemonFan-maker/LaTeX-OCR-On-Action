@@ -1,0 +1,21 @@
+name: CI
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "拉取docker镜像"
+        run: |
+          docker pull lukasblecher/pix2tex:api
+      - name: "部署内网穿透服务"
+        run: |
+          aria2c "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
+          sudo dpkg -i cloudflared-linux-amd64.deb
+      - name: "启动服务"
+        run: |
+          nohup docker run --rm -it -p 8501:8501 --entrypoint python lukasblecher/pix2tex:api pix2tex/api/run.py &
+          sleep 10s
+          cloudflared tunnel --url localhost:8501
+      
