@@ -1,4 +1,4 @@
-<h1 align="center">在 GitHub Action 上部署 LaTeX 格式的 OCR 识别服务</h1>
+<h1 align="center">在 GitHub Action 上部署 LaTeX 的 OCR 识别服务</h1>
 
 ### 请自觉遵守[MIT License](./LICENSE)
 
