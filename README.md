@@ -18,4 +18,8 @@
 开盖即食
 
 # BUG
-目前没有
+I. 奇怪的报错
+
+```
+Max retries exceeded with url...
+```
