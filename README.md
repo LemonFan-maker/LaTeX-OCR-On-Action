@@ -18,8 +18,13 @@
 开盖即食
 
 # BUG
-I. 奇怪的报错
+~~I. 奇怪的报错~~
 
 ```
-Max retries exceeded with url...
+~~Max retries exceeded with url...~~
+```
+II. 奇怪的报错...
+
+```
+<html><title>403: Forbidden</title><body>403: Forbidden</body></html>
 ```
