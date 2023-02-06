@@ -2,6 +2,8 @@
 
 ### 请自觉遵守[MIT License](./LICENSE)
 
+大佬的仓库:[https://github.com/lukas-blecher/LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR)
+
 # 一、特性
 
 - [x] 页面友好，支持新手
